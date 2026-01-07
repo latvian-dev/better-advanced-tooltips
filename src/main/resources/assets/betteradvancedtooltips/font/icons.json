@@ -1,0 +1,34 @@
+{
+	"providers": [
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/small_space.png",
+			"ascent": 7,
+			"chars": ["."]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/fuel.png",
+			"ascent": 7,
+			"chars": ["F"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/prototype_component.png",
+			"ascent": 7,
+			"chars": ["P"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/patched_component.png",
+			"ascent": 7,
+			"chars": ["Q"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/tag.png",
+			"ascent": 7,
+			"chars": ["T"]
+		}
+	]
+}
