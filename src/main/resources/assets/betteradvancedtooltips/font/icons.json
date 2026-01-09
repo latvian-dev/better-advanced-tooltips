@@ -8,9 +8,57 @@
 		},
 		{
 			"type": "bitmap",
-			"file": "betteradvancedtooltips:font/icons/fuel.png",
+			"file": "betteradvancedtooltips:font/icons/error.png",
+			"ascent": 7,
+			"chars": ["!"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/plus.png",
+			"ascent": 7,
+			"chars": ["+"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/minus.png",
+			"ascent": 7,
+			"chars": ["-"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/tilde.png",
+			"ascent": 7,
+			"chars": ["~"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/copy.png",
+			"ascent": 7,
+			"chars": ["C"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/fire.png",
 			"ascent": 7,
 			"chars": ["F"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/info.png",
+			"ascent": 7,
+			"chars": ["I"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/camera.png",
+			"ascent": 7,
+			"chars": ["M"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/no.png",
+			"ascent": 7,
+			"chars": ["N"]
 		},
 		{
 			"type": "bitmap",
@@ -29,6 +77,18 @@
 			"file": "betteradvancedtooltips:font/icons/tag.png",
 			"ascent": 7,
 			"chars": ["T"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/warn.png",
+			"ascent": 7,
+			"chars": ["W"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/yes.png",
+			"ascent": 7,
+			"chars": ["Y"]
 		}
 	]
 }

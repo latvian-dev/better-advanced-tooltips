@@ -7,9 +7,23 @@ import net.minecraft.network.chat.Style;
 public interface BATIcons {
 	Style ICONS = Style.EMPTY.withFont(BATMod.id("icons")).applyFormat(ChatFormatting.WHITE);
 
-	Component SMALL_SPACE = Component.literal(".").setStyle(ICONS);
-	Component FUEL_PREFIX = Component.literal("F.").setStyle(ICONS);
-	Component PROTOTYPE_COMPONENT_PREFIX = Component.literal("P.").setStyle(ICONS);
-	Component PATCHED_COMPONENT_PREFIX = Component.literal("Q.").setStyle(ICONS);
-	Component TAG_PREFIX = Component.literal("T.").setStyle(ICONS);
+	private static Component icon(char c) {
+		return Component.literal(String.valueOf(c)).setStyle(ICONS);
+	}
+
+	Component SMALL_SPACE = icon('.');
+	Component ERROR = icon('!');
+	Component PLUS = icon('+');
+	Component MINUS = icon('-');
+	Component TILDE = icon('~');
+	Component COPY = icon('C');
+	Component FIRE = icon('F');
+	Component INFO = icon('I');
+	Component CAMERA = icon('M');
+	Component NO = icon('N');
+	Component PROTOTYPE_COMPONENT = icon('P');
+	Component PATCHED_COMPONENT = icon('Q');
+	Component TAG = icon('T');
+	Component WARN = icon('W');
+	Component YES = icon('Y');
 }

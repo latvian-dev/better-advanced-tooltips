@@ -19,7 +19,8 @@ public class TagInstance implements Comparable<TagInstance> {
 
 	public Component toText() {
 		var component = Component.empty();
-		component.append(BATIcons.TAG_PREFIX);
+		component.append(BATIcons.TAG);
+		component.append(BATIcons.SMALL_SPACE);
 		component.append(Component.literal("#" + tag).withStyle(ChatFormatting.DARK_GRAY));
 		component.append(BATIcons.SMALL_SPACE);
 

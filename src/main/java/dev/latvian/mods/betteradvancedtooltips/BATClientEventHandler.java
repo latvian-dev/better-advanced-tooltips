@@ -68,7 +68,8 @@ public class BATClientEventHandler {
 
 					if (id != null) {
 						var line = Component.empty();
-						line.append(BATIcons.PATCHED_COMPONENT_PREFIX);
+						line.append(BATIcons.PATCHED_COMPONENT);
+						line.append(BATIcons.SMALL_SPACE);
 
 						if (entry.getValue().isEmpty()) {
 							line.append(Component.literal("!"));
@@ -95,7 +96,8 @@ public class BATClientEventHandler {
 
 						if (id != null && stack.getComponentsPatch().get(type.type()) == null) {
 							var line = Component.empty();
-							line.append(BATIcons.PROTOTYPE_COMPONENT_PREFIX);
+							line.append(BATIcons.PROTOTYPE_COMPONENT);
+							line.append(BATIcons.SMALL_SPACE);
 							line.append(Component.literal(reduce(id)).withStyle(ChatFormatting.GRAY));
 							line.append(Component.literal("="));
 							var errors0 = appendComponentValue(ops, line, (DataComponentType) type.type(), type.value());
@@ -114,7 +116,8 @@ public class BATClientEventHandler {
 
 			if (fuel > 0) {
 				var line = Component.empty();
-				line.append(BATIcons.FUEL_PREFIX);
+				line.append(BATIcons.FIRE);
+				line.append(BATIcons.SMALL_SPACE);
 				var txt = Component.empty().withStyle(ChatFormatting.GOLD);
 				txt.append("Fuel: ");
 
