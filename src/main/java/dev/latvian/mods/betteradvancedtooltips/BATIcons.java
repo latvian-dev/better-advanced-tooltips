@@ -17,13 +17,14 @@ public interface BATIcons {
 	Component MINUS = icon('-');
 	Component TILDE = icon('~');
 	Component COPY = icon('C');
+	Component ID = icon('D');
 	Component FIRE = icon('F');
 	Component INFO = icon('I');
 	Component CAMERA = icon('M');
-	Component NO = icon('N');
 	Component PROTOTYPE_COMPONENT = icon('P');
 	Component PATCHED_COMPONENT = icon('Q');
 	Component TAG = icon('T');
 	Component WARN = icon('W');
+	Component NO = icon('X');
 	Component YES = icon('Y');
 }

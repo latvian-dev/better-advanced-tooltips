@@ -38,6 +38,12 @@
 		},
 		{
 			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/id.png",
+			"ascent": 7,
+			"chars": ["D"]
+		},
+		{
+			"type": "bitmap",
 			"file": "betteradvancedtooltips:font/icons/fire.png",
 			"ascent": 7,
 			"chars": ["F"]
@@ -53,12 +59,6 @@
 			"file": "betteradvancedtooltips:font/icons/camera.png",
 			"ascent": 7,
 			"chars": ["M"]
-		},
-		{
-			"type": "bitmap",
-			"file": "betteradvancedtooltips:font/icons/no.png",
-			"ascent": 7,
-			"chars": ["N"]
 		},
 		{
 			"type": "bitmap",
@@ -83,6 +83,12 @@
 			"file": "betteradvancedtooltips:font/icons/warn.png",
 			"ascent": 7,
 			"chars": ["W"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/no.png",
+			"ascent": 7,
+			"chars": ["X"]
 		},
 		{
 			"type": "bitmap",

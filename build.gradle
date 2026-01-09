@@ -5,11 +5,12 @@ plugins {
 	id 'java'
 	id 'idea'
 	id 'maven-publish'
-	id 'net.neoforged.moddev' version "2.0.124"
+	id 'net.neoforged.moddev' version "2.0.137"
 }
 
-ext.ENV = System.getenv()
-def isLocal = !ENV.containsKey("GITHUB_RUN_NUMBER")
+var ENV = System.getenv()
+var isLocal = !ENV.containsKey("GITHUB_RUN_NUMBER")
+var CI = ENV.CI == "true"
 
 version = "$mod_version-${isLocal ? "local.${Instant.now().epochSecond}" : "build.${ENV.GITHUB_RUN_NUMBER}"}"
 group = project.maven_group
@@ -20,8 +21,8 @@ println("Building version: $version")
 neoForge {
 	enable {
 		version = project.neoforge_version
-		validateAccessTransformers = ENV.CI != "true"
-		disableRecompilation = ENV.CI == "true"
+		validateAccessTransformers = !CI
+		disableRecompilation = CI
 
 		accessTransformers {
 			publish(project.file('src/main/resources/META-INF/accesstransformer.cfg'))
@@ -148,16 +149,18 @@ publishing {
 
 idea {
 	module {
-		if (ENV.CI != "true") {
+		if (!CI) {
 			downloadSources = true
 			downloadJavadoc = true
 
 			["client", "server"].each {
 				[
+						".architectury-transformer",
 						"config",
 						"crash-reports",
 						"debug",
 						"downloads",
+						"dumps",
 						"flashback",
 						"local",
 						"logs",
@@ -169,6 +172,9 @@ idea {
 						"options.txt",
 						"server.properties",
 						"world",
+						"emi.json",
+						"usercache.json",
+						"usernamecache.json"
 				].each { ext ->
 					excludeDirs.add(file("runs/$it/$ext"))
 				}
