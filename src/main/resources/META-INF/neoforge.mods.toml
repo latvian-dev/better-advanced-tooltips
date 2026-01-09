@@ -14,9 +14,9 @@ logoBlur = false
 [[dependencies.betteradvancedtooltips]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.5.75,)"
+versionRange = "[21.1.199,)"
 ordering = "NONE"
-side = "BOTH"
+side = "CLIENT"
 
 [[mixins]]
 config = "betteradvancedtooltips.mixins.json"

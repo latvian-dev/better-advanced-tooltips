@@ -13,9 +13,14 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.decoration.Painting;
+import net.minecraft.world.item.BannerPatternItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.HangingEntityItem;
 import net.minecraft.world.item.SpawnEggItem;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
@@ -112,7 +117,7 @@ public class BATClientEventHandler {
 				}
 			}
 		} else if (Screen.hasShiftDown()) {
-			var fuel = BATConfig.CONFIG.fuelTooltip.getAsBoolean() ? stack.getBurnTime(null, mc.level.fuelValues()) : 0;
+			var fuel = BATConfig.CONFIG.fuelTooltip.getAsBoolean() ? stack.getBurnTime(null) : 0;
 
 			if (fuel > 0) {
 				var line = Component.empty();
@@ -153,7 +158,7 @@ public class BATClientEventHandler {
 				}
 
 				if (stack.getItem() instanceof SpawnEggItem item) {
-					var entityType = item.getType(mc.level.registryAccess(), stack);
+					var entityType = item.getType(stack);
 
 					if (entityType != null) {
 						tEvent.append(TooltipTagType.ENTITY_TYPE, entityType.builtInRegistryHolder().tags());
@@ -167,26 +172,26 @@ public class BATClientEventHandler {
 					tEvent.append(TooltipTagType.ENCHANTMENT, enchantment.tags());
 				}
 
-				var instrumentComponent = stack.get(DataComponents.INSTRUMENT);
+				var instrument = stack.get(DataComponents.INSTRUMENT);
 
-				if (instrumentComponent != null) {
-					var instrument = instrumentComponent.instrument().unwrap(registryAccess).orElse(null);
+				if (instrument != null) {
+					tEvent.append(TooltipTagType.INSTRUMENT, instrument.tags());
+				}
 
-					if (instrument != null) {
-						tEvent.append(TooltipTagType.INSTRUMENT, instrument.tags());
+				if (stack.getItem() instanceof HangingEntityItem hangingItem && hangingItem.type == EntityType.PAINTING) {
+					var customdata = stack.getOrDefault(DataComponents.ENTITY_DATA, CustomData.EMPTY);
+
+					if (!customdata.isEmpty()) {
+						var paintingVariant = customdata.read(registryAccess.createSerializationContext(NbtOps.INSTANCE), Painting.VARIANT_MAP_CODEC).result().orElse(null);
+
+						if (paintingVariant != null) {
+							tEvent.append(TooltipTagType.PAINTING_VARIANT, paintingVariant.tags());
+						}
 					}
 				}
 
-				var paintingVariant = stack.get(DataComponents.PAINTING_VARIANT);
-
-				if (paintingVariant != null) {
-					tEvent.append(TooltipTagType.PAINTING_VARIANT, paintingVariant.tags());
-				}
-
-				var bannerPattern = stack.get(DataComponents.PROVIDES_BANNER_PATTERNS);
-
-				if (bannerPattern != null) {
-					tEvent.append(TooltipTagType.BANNER_PATTERN, Stream.of(bannerPattern));
+				if (stack.getItem() instanceof BannerPatternItem item) {
+					tEvent.append(TooltipTagType.BANNER_PATTERN, Stream.of(item.getBannerPattern()));
 				}
 
 				NeoForge.EVENT_BUS.post(tEvent);
