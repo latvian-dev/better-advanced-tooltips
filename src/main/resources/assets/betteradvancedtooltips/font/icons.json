@@ -44,6 +44,12 @@
 		},
 		{
 			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/energy.png",
+			"ascent": 7,
+			"chars": ["E"]
+		},
+		{
+			"type": "bitmap",
 			"file": "betteradvancedtooltips:font/icons/fire.png",
 			"ascent": 7,
 			"chars": ["F"]
@@ -56,9 +62,27 @@
 		},
 		{
 			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/food.png",
+			"ascent": 7,
+			"chars": ["J"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/cold.png",
+			"ascent": 7,
+			"chars": ["L"]
+		},
+		{
+			"type": "bitmap",
 			"file": "betteradvancedtooltips:font/icons/camera.png",
 			"ascent": 7,
 			"chars": ["M"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/poison.png",
+			"ascent": 7,
+			"chars": ["O"]
 		},
 		{
 			"type": "bitmap",

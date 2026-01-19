@@ -18,9 +18,13 @@ public interface BATIcons {
 	Component TILDE = icon('~');
 	Component COPY = icon('C');
 	Component ID = icon('D');
+	Component ENERGY = icon('E');
 	Component FIRE = icon('F');
 	Component INFO = icon('I');
+	Component FOOD = icon('J');
+	Component COLD = icon('L');
 	Component CAMERA = icon('M');
+	Component POISON = icon('O');
 	Component PROTOTYPE_COMPONENT = icon('P');
 	Component PATCHED_COMPONENT = icon('Q');
 	Component TAG = icon('T');
