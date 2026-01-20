@@ -16,12 +16,16 @@ public interface BATIcons {
 	Component PLUS = icon('+');
 	Component MINUS = icon('-');
 	Component TILDE = icon('~');
+	Component BUBBLE = icon('B');
 	Component COPY = icon('C');
 	Component ID = icon('D');
 	Component ENERGY = icon('E');
 	Component FIRE = icon('F');
+	Component HEART = icon('H');
+	Component HALF_HEART = icon('h');
 	Component INFO = icon('I');
 	Component FOOD = icon('J');
+	Component HALF_FOOD = icon('j');
 	Component COLD = icon('L');
 	Component CAMERA = icon('M');
 	Component POISON = icon('O');
