@@ -32,6 +32,12 @@
 		},
 		{
 			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/bubble.png",
+			"ascent": 7,
+			"chars": ["B"]
+		},
+		{
+			"type": "bitmap",
 			"file": "betteradvancedtooltips:font/icons/copy.png",
 			"ascent": 7,
 			"chars": ["C"]
@@ -56,6 +62,18 @@
 		},
 		{
 			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/heart.png",
+			"ascent": 7,
+			"chars": ["H"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/half_heart.png",
+			"ascent": 7,
+			"chars": ["h"]
+		},
+		{
+			"type": "bitmap",
 			"file": "betteradvancedtooltips:font/icons/info.png",
 			"ascent": 7,
 			"chars": ["I"]
@@ -65,6 +83,12 @@
 			"file": "betteradvancedtooltips:font/icons/food.png",
 			"ascent": 7,
 			"chars": ["J"]
+		},
+		{
+			"type": "bitmap",
+			"file": "betteradvancedtooltips:font/icons/half_food.png",
+			"ascent": 7,
+			"chars": ["j"]
 		},
 		{
 			"type": "bitmap",
