@@ -1,6 +1,6 @@
 package dev.latvian.mods.betteradvancedtooltips;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.Event;
@@ -11,9 +11,9 @@ import java.util.stream.Stream;
 
 public class ItemTagIconsEvent extends Event {
 	private final ItemTooltipEvent parentEvent;
-	private final Map<ResourceLocation, TagInstance> map;
+	private final Map<Identifier, TagInstance> map;
 
-	public ItemTagIconsEvent(ItemTooltipEvent parentEvent, Map<ResourceLocation, TagInstance> map) {
+	public ItemTagIconsEvent(ItemTooltipEvent parentEvent, Map<Identifier, TagInstance> map) {
 		this.parentEvent = parentEvent;
 		this.map = map;
 	}

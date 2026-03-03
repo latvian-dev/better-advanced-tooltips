@@ -2,10 +2,11 @@ package dev.latvian.mods.betteradvancedtooltips;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.Style;
 
 public interface BATIcons {
-	Style ICONS = Style.EMPTY.withFont(BATMod.id("icons")).applyFormat(ChatFormatting.WHITE);
+	Style ICONS = Style.EMPTY.withFont(new FontDescription.Resource(BATMod.id("icons"))).applyFormat(ChatFormatting.WHITE);
 
 	private static Component icon(char c) {
 		return Component.literal(String.valueOf(c)).setStyle(ICONS);

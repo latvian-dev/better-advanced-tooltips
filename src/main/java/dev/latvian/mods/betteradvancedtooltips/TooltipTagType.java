@@ -4,10 +4,11 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FontDescription;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.decoration.PaintingVariant;
+import net.minecraft.world.entity.decoration.painting.PaintingVariant;
 import net.minecraft.world.item.Instrument;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -16,7 +17,7 @@ import net.minecraft.world.level.block.entity.BannerPattern;
 import net.minecraft.world.level.material.Fluid;
 
 public record TooltipTagType<T>(ResourceKey<? extends Registry<T>> registryKey, Component component) {
-	private static final Style BUILTIN_TAG_ICONS = Style.EMPTY.withFont(BATMod.id("tags")).applyFormat(ChatFormatting.WHITE);
+	private static final Style BUILTIN_TAG_ICONS = Style.EMPTY.withFont(new FontDescription.Resource(BATMod.id("tags"))).applyFormat(ChatFormatting.WHITE);
 
 	public static final TooltipTagType<BannerPattern> BANNER_PATTERN = new TooltipTagType<>(Registries.BANNER_PATTERN, "A");
 	public static final TooltipTagType<Block> BLOCK = new TooltipTagType<>(Registries.BLOCK, "B");
@@ -47,6 +48,6 @@ public record TooltipTagType<T>(ResourceKey<? extends Registry<T>> registryKey, 
 
 	@Override
 	public String toString() {
-		return registryKey.location().toString();
+		return registryKey.identifier().toString();
 	}
 }

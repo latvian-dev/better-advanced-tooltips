@@ -2,17 +2,17 @@ package dev.latvian.mods.betteradvancedtooltips;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class TagInstance implements Comparable<TagInstance> {
-	public final ResourceLocation tag;
+	public final Identifier tag;
 	public final Set<TooltipTagType<?>> registries;
 
-	public TagInstance(ResourceLocation tag) {
+	public TagInstance(Identifier tag) {
 		this.tag = tag;
 		this.registries = new LinkedHashSet<>(2);
 	}

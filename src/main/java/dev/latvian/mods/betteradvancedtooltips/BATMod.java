@@ -1,6 +1,6 @@
 package dev.latvian.mods.betteradvancedtooltips;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -13,8 +13,8 @@ public class BATMod {
 	public static final String ID = "betteradvancedtooltips";
 	public static final String NAME = "Better Advanced Tooltips";
 
-	public static ResourceLocation id(String path) {
-		return ResourceLocation.fromNamespaceAndPath(ID, path);
+	public static Identifier id(String path) {
+		return Identifier.fromNamespaceAndPath(ID, path);
 	}
 
 	public BATMod(ModContainer container) {

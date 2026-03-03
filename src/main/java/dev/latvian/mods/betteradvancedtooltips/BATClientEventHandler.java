@@ -3,7 +3,6 @@ package dev.latvian.mods.betteradvancedtooltips;
 import com.mojang.serialization.DynamicOps;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -12,7 +11,7 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.SpawnEggItem;
@@ -30,7 +29,7 @@ import java.util.stream.Stream;
 
 @EventBusSubscriber(modid = BATMod.ID, value = Dist.CLIENT)
 public class BATClientEventHandler {
-	private static String reduce(ResourceLocation id) {
+	private static String reduce(Identifier id) {
 		return id.getNamespace().equals("minecraft") ? id.getPath() : id.toString();
 	}
 
@@ -58,7 +57,7 @@ public class BATClientEventHandler {
 
 		var lines = event.getToolTip();
 
-		if (Screen.hasAltDown()) {
+		if (event.getFlags().hasAltDown()) {
 			if (BATConfig.CONFIG.componentTooltip.getAsBoolean()) {
 				var components = BuiltInRegistries.DATA_COMPONENT_TYPE;
 				var ops = registryAccess.createSerializationContext(NbtOps.INSTANCE);
@@ -90,11 +89,11 @@ public class BATClientEventHandler {
 					}
 				}
 
-				if (Screen.hasShiftDown()) {
+				if (event.getFlags().hasShiftDown()) {
 					for (var type : stack.getPrototype()) {
 						var id = components.getKey(type.type());
 
-						if (id != null && stack.getComponentsPatch().get(type.type()) == null) {
+						if (id != null && stack.getComponentsPatch().getPatch(type.type()) == null) {
 							var line = Component.empty();
 							line.append(BATIcons.PROTOTYPE_COMPONENT);
 							line.append(BATIcons.SMALL_SPACE);
@@ -111,7 +110,7 @@ public class BATClientEventHandler {
 					}
 				}
 			}
-		} else if (Screen.hasShiftDown()) {
+		} else if (event.getFlags().hasShiftDown()) {
 			var fuel = BATConfig.CONFIG.fuelTooltip.getAsBoolean() ? stack.getBurnTime(null, mc.level.fuelValues()) : 0;
 
 			if (fuel > 0) {
@@ -135,7 +134,7 @@ public class BATClientEventHandler {
 			}
 
 			if (BATConfig.CONFIG.tagTooltip.getAsBoolean()) {
-				var tempTagNames = new LinkedHashMap<ResourceLocation, TagInstance>();
+				var tempTagNames = new LinkedHashMap<Identifier, TagInstance>();
 				var tEvent = new ItemTagIconsEvent(event, tempTagNames);
 
 				tEvent.append(TooltipTagType.ITEM, stack.getItem().builtInRegistryHolder().tags());
@@ -152,8 +151,8 @@ public class BATClientEventHandler {
 					}
 				}
 
-				if (stack.getItem() instanceof SpawnEggItem item) {
-					var entityType = item.getType(mc.level.registryAccess(), stack);
+				if (stack.getItem() instanceof SpawnEggItem) {
+					var entityType = SpawnEggItem.getType(stack);
 
 					if (entityType != null) {
 						tEvent.append(TooltipTagType.ENTITY_TYPE, entityType.builtInRegistryHolder().tags());
@@ -170,11 +169,8 @@ public class BATClientEventHandler {
 				var instrumentComponent = stack.get(DataComponents.INSTRUMENT);
 
 				if (instrumentComponent != null) {
-					var instrument = instrumentComponent.instrument().unwrap(registryAccess).orElse(null);
-
-					if (instrument != null) {
-						tEvent.append(TooltipTagType.INSTRUMENT, instrument.tags());
-					}
+					var instrument = instrumentComponent.instrument();
+					tEvent.append(TooltipTagType.INSTRUMENT, instrument.tags());
 				}
 
 				var paintingVariant = stack.get(DataComponents.PAINTING_VARIANT);
