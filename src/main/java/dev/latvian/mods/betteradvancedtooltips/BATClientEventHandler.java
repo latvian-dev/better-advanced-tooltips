@@ -25,7 +25,6 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.stream.Stream;
 
 @EventBusSubscriber(modid = BATMod.ID, value = Dist.CLIENT)
 public class BATClientEventHandler {
@@ -137,17 +136,17 @@ public class BATClientEventHandler {
 				var tempTagNames = new LinkedHashMap<Identifier, TagInstance>();
 				var tEvent = new ItemTagIconsEvent(event, tempTagNames);
 
-				tEvent.append(TooltipTagType.ITEM, stack.getItem().builtInRegistryHolder().tags());
+				tEvent.append(TooltipTagType.ITEM, stack.getItem().builtInRegistryHolder());
 
 				if (stack.getItem() instanceof BlockItem item) {
-					tEvent.append(TooltipTagType.BLOCK, item.getBlock().builtInRegistryHolder().tags());
+					tEvent.append(TooltipTagType.BLOCK, item.getBlock().builtInRegistryHolder());
 				}
 
 				if (stack.getItem() instanceof BucketItem bucket) {
 					var fluid = bucket.content;
 
 					if (fluid != Fluids.EMPTY) {
-						tEvent.append(TooltipTagType.FLUID, fluid.builtInRegistryHolder().tags());
+						tEvent.append(TooltipTagType.FLUID, fluid.builtInRegistryHolder());
 					}
 				}
 
@@ -155,34 +154,33 @@ public class BATClientEventHandler {
 					var entityType = SpawnEggItem.getType(stack);
 
 					if (entityType != null) {
-						tEvent.append(TooltipTagType.ENTITY_TYPE, entityType.builtInRegistryHolder().tags());
+						tEvent.append(TooltipTagType.ENTITY_TYPE, entityType.builtInRegistryHolder());
 					}
 				}
 
 				var enchantments = stack.get(DataComponents.STORED_ENCHANTMENTS);
 
 				if (enchantments != null && enchantments.size() == 1) {
-					var enchantment = enchantments.entrySet().iterator().next().getKey();
-					tEvent.append(TooltipTagType.ENCHANTMENT, enchantment.tags());
+					tEvent.append(TooltipTagType.ENCHANTMENT, enchantments.entrySet().iterator().next().getKey());
 				}
 
 				var instrumentComponent = stack.get(DataComponents.INSTRUMENT);
 
 				if (instrumentComponent != null) {
 					var instrument = instrumentComponent.instrument();
-					tEvent.append(TooltipTagType.INSTRUMENT, instrument.tags());
+					tEvent.append(TooltipTagType.INSTRUMENT, instrument);
 				}
 
 				var paintingVariant = stack.get(DataComponents.PAINTING_VARIANT);
 
 				if (paintingVariant != null) {
-					tEvent.append(TooltipTagType.PAINTING_VARIANT, paintingVariant.tags());
+					tEvent.append(TooltipTagType.PAINTING_VARIANT, paintingVariant);
 				}
 
 				var bannerPattern = stack.get(DataComponents.PROVIDES_BANNER_PATTERNS);
 
 				if (bannerPattern != null) {
-					tEvent.append(TooltipTagType.BANNER_PATTERN, Stream.of(bannerPattern));
+					tEvent.append(TooltipTagType.BANNER_PATTERN, bannerPattern);
 				}
 
 				NeoForge.EVENT_BUS.post(tEvent);

@@ -1,5 +1,7 @@
 package dev.latvian.mods.betteradvancedtooltips;
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderSet;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.ItemStack;
@@ -28,5 +30,22 @@ public class ItemTagIconsEvent extends Event {
 
 	public <T> void append(TooltipTagType<T> type, Stream<? extends TagKey<T>> tags) {
 		tags.forEach(tag -> map.computeIfAbsent(tag.location(), TagInstance::new).registries.add(type));
+	}
+
+	public <T> void append(TooltipTagType<T> type, Holder<T> holder) {
+		append(type, holder.tags());
+	}
+
+	public <T> void append(TooltipTagType<T> type, HolderSet<T> holderSet) {
+		holderSet.unwrap().map(tagKey -> {
+			append(type, Stream.of(tagKey));
+			return null;
+		}, holders -> {
+			for (var holder : holders) {
+				append(type, holder);
+			}
+
+			return null;
+		});
 	}
 }
