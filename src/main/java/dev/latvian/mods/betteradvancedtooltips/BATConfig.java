@@ -19,7 +19,7 @@ public class BATConfig {
 	public final ModConfigSpec.BooleanValue componentTooltip;
 
 	private BATConfig(ModConfigSpec.Builder builder) {
-		this.removeCreativeTabTooltip = builder.define("remove_creative_tab_tooltip", true);
+		this.removeCreativeTabTooltip = builder.define("remove_creative_tab_tooltip", false);
 		this.removeComponentCountTooltip = builder.define("remove_component_count_tooltip", true);
 		this.fuelTooltip = builder.define("fuel_tooltip", true);
 		this.tagTooltip = builder.define("tag_tooltip", true);
