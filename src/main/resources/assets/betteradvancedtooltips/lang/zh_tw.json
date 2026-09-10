@@ -1,0 +1,7 @@
+{
+	"betteradvancedtooltips.configuration.remove_creative_tab_tooltip": "移除創造模式物品欄內的物品提示",
+	"betteradvancedtooltips.configuration.remove_component_count_tooltip": "移除資料元件數量物品提示",
+	"betteradvancedtooltips.configuration.fuel_tooltip": "燃料物品提示",
+	"betteradvancedtooltips.configuration.tag_tooltip": "標籤物品提示",
+	"betteradvancedtooltips.configuration.component_tooltip": "資料元件物品提示"
+}
