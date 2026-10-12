@@ -8,13 +8,13 @@ version = "${version}"
 displayName = "Better Advanced Tooltips"
 description = "Adds tag, component and other tooltips to items in F3+H mode"
 authors = "latvian.dev"
-logoFile = "betteradvancedtooltips_logo.png"
-logoBlur = false
+iconFile = "betteradvancedtooltips_logo.png"
+iconBlur = false
 
 [[dependencies.betteradvancedtooltips]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.5.75,)"
+versionRange = "[26.3,)"
 ordering = "NONE"
 side = "BOTH"
 

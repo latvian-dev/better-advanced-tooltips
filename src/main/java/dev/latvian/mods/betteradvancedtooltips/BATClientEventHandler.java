@@ -61,23 +61,24 @@ public class BATClientEventHandler {
 				var components = BuiltInRegistries.DATA_COMPONENT_TYPE;
 				var ops = registryAccess.createSerializationContext(NbtOps.INSTANCE);
 
-				for (var entry : stack.getComponentsPatch().entrySet()) {
-					var id = components.getKey(entry.getKey());
+				for (var key : stack.getComponentsPatch().keySet()) {
+					var id = components.getKey(key);
 
 					if (id != null) {
+						var value = stack.getComponentsPatch().getPatch(key);
 						var line = Component.empty();
 						line.append(BATIcons.PATCHED_COMPONENT);
 						line.append(BATIcons.SMALL_SPACE);
 
-						if (entry.getValue().isEmpty()) {
+						if (value == null) {
 							line.append(Component.literal("!"));
 						}
 
 						line.append(Component.literal(reduce(id)).withStyle(ChatFormatting.YELLOW));
 
-						if (entry.getValue().isPresent()) {
+						if (value != null) {
 							line.append(Component.literal("="));
-							var errors0 = appendComponentValue(ops, line, (DataComponentType) entry.getKey(), entry.getValue().get());
+							var errors0 = appendComponentValue(ops, line, (DataComponentType) key, value);
 
 							if (!errors0.isEmpty()) {
 								lines.add(Component.literal(reduce(id) + " errored, see log").withStyle(ChatFormatting.DARK_RED));
@@ -110,6 +111,7 @@ public class BATClientEventHandler {
 				}
 			}
 		} else if (event.getFlags().hasShiftDown()) {
+			/* Currently no longer possible
 			var fuel = BATConfig.CONFIG.fuelTooltip.getAsBoolean() ? stack.getBurnTime(null, mc.level.fuelValues()) : 0;
 
 			if (fuel > 0) {
@@ -131,6 +133,7 @@ public class BATClientEventHandler {
 				line.append(txt);
 				lines.add(line);
 			}
+			 */
 
 			if (BATConfig.CONFIG.tagTooltip.getAsBoolean()) {
 				var tempTagNames = new LinkedHashMap<Identifier, TagInstance>();
