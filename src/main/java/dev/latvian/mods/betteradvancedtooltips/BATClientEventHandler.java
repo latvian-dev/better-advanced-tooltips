@@ -64,6 +64,7 @@ public class BATClientEventHandler {
 					var id = components.getKey(entry.getKey());
 
 					if (id != null) {
+						var value = stack.getComponentsPatch().getPatch(key);
 						var line = Component.empty();
 						line.append(BATIcons.PATCHED_COMPONENT);
 						line.append(BATIcons.SMALL_SPACE);
