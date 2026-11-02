@@ -22,25 +22,18 @@ import net.minecraft.world.item.HangingEntityItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.material.Fluids;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.EventPriority;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.fabricmc.fabric.api.registry.FuelRegistry;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
-@EventBusSubscriber(modid = BATMod.ID, value = Dist.CLIENT)
 public class BATClientEventHandler {
 	private static String reduce(ResourceLocation id) {
 		return id.getNamespace().equals("minecraft") ? id.getPath() : id.toString();
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOW)
-	public static void onItemTooltip(ItemTooltipEvent event) {
+	public static void onItemTooltip(ItemTooltipContext event) {
 		var mc = Minecraft.getInstance();
 
 		if (mc.level == null) {
@@ -117,7 +110,8 @@ public class BATClientEventHandler {
 				}
 			}
 		} else if (Screen.hasShiftDown()) {
-			var fuel = BATConfig.CONFIG.fuelTooltip.getAsBoolean() ? stack.getBurnTime(null) : 0;
+			var burnTime = BATConfig.CONFIG.fuelTooltip.getAsBoolean() ? FuelRegistry.INSTANCE.get(stack.getItem()) : null;
+			var fuel = burnTime == null ? 0 : burnTime;
 
 			if (fuel > 0) {
 				var line = Component.empty();
@@ -194,7 +188,7 @@ public class BATClientEventHandler {
 					tEvent.append(TooltipTagType.BANNER_PATTERN, Stream.of(item.getBannerPattern()));
 				}
 
-				NeoForge.EVENT_BUS.post(tEvent);
+				ItemTagIconsEvent.EVENT.invoker().onItemTagIcons(tEvent);
 
 				if (!tempTagNames.isEmpty()) {
 					tempTagNames.values().stream().sorted().map(TagInstance::toText).forEach(lines::add);

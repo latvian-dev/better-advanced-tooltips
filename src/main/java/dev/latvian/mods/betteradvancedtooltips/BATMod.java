@@ -1,15 +1,14 @@
 package dev.latvian.mods.betteradvancedtooltips;
 
 import net.minecraft.resources.ResourceLocation;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
+import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.NeoForgeConfigRegistry;
+import fuzs.forgeconfigapiport.fabric.api.neoforge.v4.client.ConfigScreenFactoryRegistry;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.event.Event;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
-@Mod(value = BATMod.ID, dist = Dist.CLIENT)
-public class BATMod {
+public class BATMod implements ClientModInitializer {
 	public static final String ID = "betteradvancedtooltips";
 	public static final String NAME = "Better Advanced Tooltips";
 
@@ -17,8 +16,12 @@ public class BATMod {
 		return ResourceLocation.fromNamespaceAndPath(ID, path);
 	}
 
-	public BATMod(ModContainer container) {
-		container.registerConfig(ModConfig.Type.CLIENT, BATConfig.CONFIG_SPEC, "better-advanced-tooltips-client.toml");
-		container.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+	@Override
+	public void onInitializeClient() {
+		NeoForgeConfigRegistry.INSTANCE.register(ID, ModConfig.Type.CLIENT, BATConfig.CONFIG_SPEC, "better-advanced-tooltips-client.toml");
+		ConfigScreenFactoryRegistry.INSTANCE.register(ID, ConfigurationScreen::new);
+		ResourceLocation phase = id("tooltip");
+		ItemTooltipCallback.EVENT.addPhaseOrdering(Event.DEFAULT_PHASE, phase);
+		ItemTooltipCallback.EVENT.register(phase, BATClientEventHandler::onItemTooltip);
 	}
 }

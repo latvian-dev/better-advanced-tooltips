@@ -33,6 +33,7 @@ public class TagInstance implements Comparable<TagInstance> {
 
 	@Override
 	public int compareTo(@NotNull TagInstance o) {
-		return tag.compareNamespaced(o.tag);
+		var result = tag.getNamespace().compareTo(o.tag.getNamespace());
+		return result != 0 ? result : tag.getPath().compareTo(o.tag.getPath());
 	}
 }
