@@ -1,0 +1,23 @@
+{
+	"schemaVersion": 1,
+	"id": "betteradvancedtooltips",
+	"version": "${version}",
+	"name": "Better Advanced Tooltips",
+	"description": "Adds tag, component and other tooltips to items in F3+H mode",
+	"authors": ["latvian.dev"],
+	"license": "MIT",
+	"icon": "betteradvancedtooltips_logo.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": ["dev.latvian.mods.betteradvancedtooltips.BATMod"]
+	},
+	"mixins": ["betteradvancedtooltips.mixins.json"],
+	"accessWidener": "betteradvancedtooltips.accesswidener",
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"fabric-api": ">=0.116.17+1.21.1",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"forgeconfigapiport": ">=${forge_config_api_port_version}"
+	}
+}
